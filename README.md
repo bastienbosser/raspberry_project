@@ -55,16 +55,16 @@ that solution, so you will not be forced to take a server immediatly
 If your cards are not new thought to format them.
 If you have a write permission problem when formatting SD cards, you can use this [link](https://bit.ly/37Y37AC).
 
-After this, flash all your cards with Hypriot. You can use Linux commands, flash is a good one.  
-If you have windows or if you prefer graphical stuff, please look at solutions like [Etcher](https://www.balena.io/etcher/) 
+After this, flash all your cards with Hypriot. You can use Linux commands to flash your cards.
+If you have Windows or if you prefer graphical stuff, please look at solutions like [Etcher](https://www.balena.io/etcher/) 
 or go on your own.
 
 
-Modify the hostname of each pi by something which can be use to identify him.  
-For our solution, we have 25 Raspberry Pi with these hostname: rasp00,rasp01...rasp25.
+Modify the hostname of each pi by something which can be use to identify it.  
+For our solution, we have 25 Raspberry Pi with these hostnames: rasp00,rasp01...rasp25.
 
 To modify the default hostname, you should change the line “hostname: black-pearl” by “hostname: myname” in file user-data.
-It is impportant to realise this step after have flash SD cards and before boot Raspberry Pi for the first time.
+It is important to realise this step after having flashed SD cards and before booting Raspberry Pi for the first time.
 
 By default, ssh is fully open on Hypriot installs.
 You can connect your pi via:
@@ -79,8 +79,8 @@ Notice that, if you don't know Raspberry IP, you have many solutions:
 network)
 
 On each PI you will now need to install Kubernetes.
-If you have too many, write a script or use Ansible can be a good idea
-Please now connect on each pi, and do the followings commands:
+If you have too many, write a script or use Ansible can be a good idea.
+Please now connect on each pi, and do the following commands:
 
     sudo apt-get update && sudo apt-get install -y apt-transport-https
     curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
