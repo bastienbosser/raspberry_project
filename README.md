@@ -5,17 +5,17 @@
 The objective of our project is to create a High Available cluster on some Raspberry Pi with k3s and use this cluster to 
 deploy a streaming platform.
 
-This tutorial is made for all peoples who wants to try what k3s can do on a cluster of X Raspberry Pi. 
+This tutorial is made for all people who want to try what k3s can do on a cluster of X Raspberry Pi. 
 High Available means that we have multiple master and load balancer. 
 Here, we used 15 Raspberry Pi 3 Model B+ and 10 Raspberry Pi 4 Model B.
 
-Like it's wrote on kubernetes documentation, please notice that:
-"You cluster must run k3s version 1.0.0.
+As it's written on the kubernetes documentation, please notice that:
+"Your cluster must run k3s version 1.0.0.
 You should also be aware that setting up High Available clusters with xinetd and haproxy is
 still experimental. You might encounter issues with upgrading your clusters,
 for example. We encourage you to try either approach, and provide feedback."
 
-Our method is probably not the best, but it's work. We are not perfect, we
+Our method is probably not the best, but it works properly. We are not perfect, we
 made a lot of mistakes to come to a decent result. If you have a better
 solution for that setup, please make us reports and feedbacks.
 
