@@ -1,5 +1,6 @@
 # Create High Available Cluster With Some Raspberry Pi
 
+<img src="https://user-images.githubusercontent.com/55381632/70054406-c9710280-15d7-11ea-9d49-e7a51e0fa6c2.png" width="100">
 
 ---
 The objective of our project is to create a High Available cluster on some Raspberry Pi with k3s and use this cluster to 
