@@ -28,7 +28,7 @@ solution for that setup, please send us reports and feedbacks.
 This solution is proposed by a group of students in the CyberSecurity Classroom (2019)
 of the Engineering School called "ISEN Yncrea Méditerranée" at Toulon (France).
 The team is composed of BOSC Virginie, BOSSER Bastien, RIGAUX Thomas, SODA Théo and VALLAURI Mélissa.
-All this tutorial is a result of our project.
+This whole tutorial is the result of our project.
 
 ## Why Raspberry Pi?
 
@@ -36,13 +36,13 @@ All this tutorial is a result of our project.
 multiple hosts; providing basic mechanisms for deployment, maintenance, and
 scaling of applications."
 
-So, the question is legitimate: Why a Setup on Raspberry Pi ?
+So, it is legitimate to think why should we use this setup on Raspberry Pi.
 There are many reasons for that:
 - The challenge
-- It's experimental, so we learned lot of things about how things work.
-- If an application is enough optimize to work on Raspberry Pi (like WebApp or WebSite), the traffic can be manage with 
-that solution, so you will not be forced to take a server immediatly
-- You can learn to manage k3s on local solution, with a very low cost.
+- It's experimental, so we learned a lot of things about how things work.
+- If an application is enough optimized to work on Raspberry Pi (like WebApp or WebSite), the traffic can be managed with 
+that solution, so you will not be forced to take a server immediatly.
+- You can learn to manage k3s on a local solution, at a very low cost.
 
 ## Let's start!
 
@@ -54,16 +54,16 @@ that solution, so you will not be forced to take a server immediatly
 
 ### First Step: Format SD Card + Install OS
 
-If your cards are not new thought to format them.
+If your cards are not new, think about formatting them.
 If you have a write permission problem when formatting SD cards, you can use this [link](https://bit.ly/37Y37AC).
 
-After this, flash all your cards with Hypriot. You can use Linux commands to flash your cards.
-If you have Windows or if you prefer graphical stuff, please look at solutions like [Etcher](https://www.balena.io/etcher/) 
+Then, flash all your cards with Hypriot. You can use Linux commands to flash your cards.
+If you have Windows or if you prefer graphical stuff, please look at some solutions like [Etcher](https://www.balena.io/etcher/) 
 or go on your own.
 
 
-Modify the hostname of each pi by something which can be use to identify it.  
-For our solution, we have 25 Raspberry Pi with these hostnames: rasp00,rasp01...rasp25.
+Modify the hostname of each pi by something which can be use to identify it easily.  
+Concerning our project, we have 25 Raspberry Pi with these hostnames: rasp00,rasp01...rasp25.
 
 To modify the default hostname, you should change the line “hostname: black-pearl” by “hostname: myname” in file user-data.
 It is important to realise this step after having flashed SD cards and before booting Raspberry Pi for the first time.
@@ -81,7 +81,7 @@ Notice that, if you don't know Raspberry IP, you have many solutions:
 network)
 
 On each PI you will now need to install Kubernetes.
-If you have too many, write a script or use Ansible can be a good idea.
+If you have too many, write a script or using Ansible can be a good idea.
 Please now connect on each pi, and do the following commands:
 
     sudo apt-get update && sudo apt-get install -y apt-transport-https
