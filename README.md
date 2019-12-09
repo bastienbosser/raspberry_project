@@ -48,7 +48,7 @@ that solution, so you will not be forced to take a server immediatly
 
 ### Requirements
 
-- 5 Raspberry Pi (3 B+ or 4B in our case) at least
+- 5 Raspberry Pi (3 B+ or 4 B in our case) at least
 - Same amount of micro-SD cards
 - Hypriot OS (1.9 in our case): https://blog.hypriot.com/downloads/
 
@@ -92,7 +92,7 @@ Please now connect on each pi, and do the following commands:
 
 ### Second Step: Define your server
 
-Our team have 16 Raspberry Pi. Our design follow these rules:
+Our team have 25 Raspberry Pi. Our design follow these rules:
 
 - All our Pi have fixed IP from 10.10.50.194 to 10.10.50.219
 - Our master will be .198, .203, .208, .214 and .219
@@ -119,6 +119,89 @@ Repeat this operation for each master and their slaves.
 
 ### Third step: Define your Load Balancer
 
+HAProxy is a TCP/HTTP relay offering easy integration in a highly available environment. Indeed, he is capable:
+- to perform static routing defined by cookies;
+- to perform load balancing with cookie creation to ensure session persistence;
+- to provide external visibility of one's health status;
+- to stop smoothly without sudden loss of service;
+- to modify/add/delete headers in the request and response;
+- to prohibit requests that verify certain conditions;
+- to use backup servers when the main servers are out of order;
+- to maintain clients on the right application server based on application cookies;
+- Provide HTML status reports to authenticated users, through intercepted application URIs.
 
+It requires few resources, and its single-process event architecture allows it to easily manage several thousand simultaneous connections on several relays without collapsing the system, so we will focus mainly on load balancing, at least initially.
 
+The Pi .204 will be our load balancer.
 
+#### Configuring your haproxy server
+
+So, now, install haproxy on Pi .204
+
+    sudo apt-get install haproxy
+
+Create a backup of the basic configuration 
+
+    sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.old
+
+Edit the file /etc/haproxy/haproxy.cfg to obtain the configuration below
+
+    global
+    log 127.0.0.1 local2
+    chroot /var/lib/haproxy
+    pidfile /var/run/haproxy.pid
+    maxconn 4000
+    user haproxy
+    group haproxy
+    daemon
+
+    # turn on stats unix socket
+
+    stats socket /var/lib/haproxy/stats
+
+    defaults
+    mode tcp
+    log global
+    option dontlognull
+    option http-server-close
+    #option forwardfor except 127.0.0.0/8
+    option redispatch
+    retries 3
+    timeout http-request 10s
+    timeout queue 1m
+    timeout connect 10s
+    timeout client 1m
+    timeout server 1m
+    timeout http-keep-alive 10s
+    timeout check 10s
+    maxconn 3000
+
+    listen haproxy_servers
+
+    #bind correspond au port d'écoute de votre HAPROXY
+
+    bind *:6443
+    mode tcp
+    option tcplog
+    timeout client 10800s
+    timeout server 10800s
+    #balance leastconn
+    default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 200 maxqueue 250 weight 100 error-limit 10 on-error mark-down on-marked-down shutdown-sessions agent-port 9707 agent-inter 30s
+    server rasp04 10.10.50.198:6443 check agent-check observe layer4
+    server rasp09 10.10.50.203:6443 check agent-check observe layer4
+    server rasp14 10.10.50.208:6443 check agent-check observe layer4
+    server rasp20 10.10.50.214:6443 check agent-check observe layer4
+    server rasp25 10.10.50.219:6443 check agent-check observe layer4
+    server localhost 127.0.0.1:6443 maxconn 500 backup weight 1
+
+    backend servers
+
+    mode tcp
+    option tcplog
+    #balance roundrobin
+    server rasp04 10.10.50.198:6443
+    server rasp09 10.10.50.203:6443
+    server rasp14 10.10.50.208:6443
+    server rasp20 10.10.50.214:6443 
+    server localhost 127.0.0.1:6443
+    
