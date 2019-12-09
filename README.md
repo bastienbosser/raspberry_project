@@ -136,9 +136,10 @@ The Pi .204 will be our load balancer.
 
 #### Configuring your haproxy server
 
-So, now, install haproxy on Pi .204
+So, now, install haproxy on Pi .204 and telnet
 
     sudo apt-get install haproxy
+    sudo apt-get install telnet
 
 Create a backup of the basic configuration 
 
@@ -178,7 +179,7 @@ Edit the file /etc/haproxy/haproxy.cfg to obtain the configuration below
 
     listen haproxy_servers
 
-    #bind correspond au port d'écoute de votre HAPROXY
+    # bind is the listening port of your HAPROXY
 
     bind *:6443
     mode tcp
@@ -202,6 +203,91 @@ Edit the file /etc/haproxy/haproxy.cfg to obtain the configuration below
     server rasp04 10.10.50.198:6443
     server rasp09 10.10.50.203:6443
     server rasp14 10.10.50.208:6443
-    server rasp20 10.10.50.214:6443 
-    server localhost 127.0.0.1:6443
+    server rasp20 10.10.50.214:6443
+    server rasp25 10.10.50.219:6443
+ 
+#### Installing the agent on the host machines (.198, .203, .208, .214, .219)
+
+Create a file /usr/local/bin/haproxy-agent-check and insert the script below
+
+    #!/bin/bash
+    LMAX=90
+
+    load=$(uptime | grep -E -o 'load average[s:][: ].*' | sed 's/,//g' | cut -d' ' -f3-5)
+    cpus=$(grep processor /proc/cpuinfo | wc -l)
+
+    while read -r l1 l5 l15; do {
+    l5util=$(echo "$l5/$cpus*100" | bc -l | cut -d"." -f1);
+    [[ $l5util -lt $LMAX ]] && echo "up 100%" && exit 0;
+    [[ $l5util -gt $LMAX ]] && [[ $l5util -lt 100 ]] && echo "up 50%" && exit 0;
+    echo "down#CPU overload";
+    }; done < <(echo $load)
+
+    exit 0
+
+Adjust the permissions so that the script is executable:
+
+    sudo chmod +x /usr/local/bin/haproxy-agent-check
+
+Install xinetd, bc and telnet
+
+    sudo apt-get install xinetd
+    sudo apt-get install bc
+    sudo apt-get install telnet
+
+Edit the file /etc/services and add the line below:
+
+    haproxy-agent-check 9707/tcp                # haproxy-agent-check
+
+Create the file /etc/xinetd.d/haproxy-agent-check with the following content:
+
+    # default: on
+    # description: haproxy-agent-check
+    service haproxy-agent-check
+    {
+    disable         = no
+    flags           = REUSE
+    socket_type     = stream
+    port            = 9707
+    wait            = no
+    user            = nobody
+    server          = /usr/local/bin/haproxy-agent-check
+    log_on_failure  += USERID
+    per_source      = UNLIMITED
+    }
+
+Adjust the rights:
+
+    sudo chmod +x /etc/xinetd.d/haproxy-agent-check
     
+Restart the xinetd service
+
+    sudo service xinetd restart
+
+Once you have done this on each of your machines, test the connectivity between your HAProxy server and your hosts via port 9707
+
+    sudo telnet 10.10.50.198 9707
+    
+Repeat this command for Pi .203, .208, .214 and .219.
+
+Then restart the HaProxy service on the machine provided for this purpose:
+
+    sudo service haproxy restart
+    
+Finally, from your HAproxy machine, check that your agents are responding correctly with the following command:
+
+    sudo echo "show stat" | sudo socat stdio unix-connect:/var/lib/haproxy/stats  | sudo cut -d ',' -f1,2,18,19 | sudo grep haproxy
+    
+You should get a feedback from this guy:
+
+
+    
+
+    
+
+    
+    
+    
+
+
+
