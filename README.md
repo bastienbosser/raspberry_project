@@ -62,7 +62,7 @@ If you have Windows or if you prefer graphical stuff, please look at some soluti
 or go on your own.
 
 
-Modify the hostname of each pi by something which can be use to identify it easily.  
+Modify the hostname of each Pi by something which can be use to identify it easily.  
 Concerning our project, we have 25 Raspberry Pi with these hostnames: rasp00,rasp01...rasp25.
 
 To modify the default hostname, you should change the line “hostname: black-pearl” by “hostname: myname” in file user-data.
@@ -102,16 +102,16 @@ So, now, deploy the master .198 with k3s:
 
     sudo curl -sfL https://get.k3s.io | sh -
 
-Retrieve the TOKEN that will allow to deploy the slaves with the command:
+Retrieve the TOKEN that will allow you to deploy the slaves using the following command:
 
     sudo cat /var/lib/rancher/k3s/server/node-token
     
-Now, deploy slaves .194,..., .197 with k3s:
+Now, deploy slaves .194,..., .197 using k3s:
 
     curl -sfL https://get.k3s.io | K3S_URL=https://myserver:6443 K3S_TOKEN=XXX sh - (Replace myserver by the IP of master and XXX by token retrieve)
     sudo k3s agent --server https://myserver:6443 --token NODE_TOKEN (Replace myserver by the IP of master and NODE_TOKEN by token retrieve)
 
-Verified that all Raspberry are ready by executing the following command on the master:
+Verified that all Raspberry are ready executing the following command on the master:
 
     sudo k3s kubectl get nodes
 
@@ -136,16 +136,16 @@ The Pi .204 will be our load balancer.
 
 #### Configuring your haproxy server
 
-So, now, install haproxy on Pi .204 and telnet
+So, now, install haproxy on Pi .204 and telnet:
 
     sudo apt-get install haproxy
     sudo apt-get install telnet
 
-Create a backup of the basic configuration 
+Create a backup of the basic configuration: 
 
     sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.old
 
-Edit the file /etc/haproxy/haproxy.cfg to obtain the configuration below
+Edit the file /etc/haproxy/haproxy.cfg to obtain the configuration below:
 
     global
     log 127.0.0.1 local2
@@ -208,7 +208,7 @@ Edit the file /etc/haproxy/haproxy.cfg to obtain the configuration below
  
 #### Installing the agent on the host machines (.198, .203, .208, .214, .219)
 
-Create a file /usr/local/bin/haproxy-agent-check and insert the script below
+Create a file /usr/local/bin/haproxy-agent-check and insert the script below:
 
     #!/bin/bash
     LMAX=90
@@ -229,7 +229,7 @@ Adjust the permissions so that the script is executable:
 
     sudo chmod +x /usr/local/bin/haproxy-agent-check
 
-Install xinetd, bc and telnet
+Install xinetd, bc and telnet:
 
     sudo apt-get install xinetd
     sudo apt-get install bc
@@ -260,11 +260,11 @@ Adjust the rights:
 
     sudo chmod +x /etc/xinetd.d/haproxy-agent-check
     
-Restart the xinetd service
+Restart the xinetd service:
 
     sudo service xinetd restart
 
-Once you have done this on each of your machines, test the connectivity between your HAProxy server and your hosts via port 9707
+Once you have done this on each of your machines, test the connectivity between your HAProxy server and your hosts via port 9707:
 
     sudo telnet 10.10.50.198 9707
     
