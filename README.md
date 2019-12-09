@@ -4,8 +4,8 @@
 
 
 ---
-The objective of our project is to create a High Available cluster on some Raspberry Pi with k3s and use this cluster to 
-deploy a streaming platform.
+The objective of our project is to create a High Available (HA) cluster on some Raspberry Pi using k3s and the aim of this cluster to 
+deploy a video streaming platform.
 
 This tutorial is made for all people who want to try what k3s can do on a cluster of X Raspberry Pi. 
 High Available means that we have multiple master and load balancer. 
@@ -19,7 +19,7 @@ for example. We encourage you to try either approach, and provide feedback."
 
 Our method is probably not the best, but it works properly. We are not perfect, we
 made a lot of mistakes to come to a decent result. If you have a better
-solution for that setup, please make us reports and feedbacks.
+solution for that setup, please send us reports and feedbacks.
 
 ---
 
