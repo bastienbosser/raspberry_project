@@ -24,7 +24,7 @@ This whole tutorial is the result of our project.
 
 ## Why do we use a local website and server?
 
-We use Xampp to set up a local server that you can download here: X
+We use Xampp to set up a local server that you can download here: [Xampp](https://www.apachefriends.org/fr/download.html).
 It is really useful to test, without too much convenience, our website and its functionalities.
 
 ## Let's start!
@@ -42,6 +42,7 @@ We added a navbar with these elements: logo, home, upload, videos and connection
 In the main page, we wanted to have a beautiful animated background at the top and then, a section where all videos are sorted.
 Finally, we added a small footer to the website with the name of the project.
 
-### Second Step: Upload and database
+### Second Step: Streaming video
 We saw previously the template of our site. It is time to implement more functionalities!
 
+### Third Step: Upload and database
