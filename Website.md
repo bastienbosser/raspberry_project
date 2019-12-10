@@ -7,7 +7,7 @@ deploy a video streaming platform.
 
 This tutorial is made for all people who want to set up a platform displaying videos. It is really basic and the aim is to have something working properly before implementing other functionalities.
 
-First, we developed a local website using a local server and in a second part, we dockerized our content in order to deploy in on the cluster.
+First, we developed a local website using a local server and in a second part, we dockerized our content in order to deploy on the cluster.
 
 Our method is probably not the best, but it works properly. We are not perfect, we
 made a lot of mistakes to come to a decent result. If you have a better
