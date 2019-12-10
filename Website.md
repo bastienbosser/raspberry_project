@@ -34,7 +34,7 @@ It is really useful to test, without too much convenience, our website and its f
 
 - A computer with an installed OS
 - Xampp software installed
-- An IDE to develop your site
+- An IDE to develop your site (we used VSCode in our case)
 
 ### First Step: Develop the structure of the site
 
