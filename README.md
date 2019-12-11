@@ -278,8 +278,7 @@ Finally, from your HAproxy machine, check that your agents are responding correc
 
     sudo echo "show stat" | sudo socat stdio unix-connect:/var/lib/haproxy/stats  | sudo cut -d ',' -f1,2,18,19 | sudo grep haproxy
     
-You should get a feedback from this guy:
-
+You should get something like this:
 
     
 
