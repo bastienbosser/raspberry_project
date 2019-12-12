@@ -39,11 +39,21 @@ It is really useful to test, without too much convenience, our website and its f
 ### First Step: Develop the structure of the site
 
 It is necessary to code, but, since we are not professionals designers, we used a basic bootstrap template to have a simple and aestethic website first page. 
+
 We added a navbar with these elements: logo, home, upload, videos and connection but we'll come back later to the upload and connection parts.
+
 In the main page, we wanted to have a beautiful animated background at the top and then, a section where all videos are sorted.
 Finally, we added a small footer to the website with the name of the project.
 
 ### Second Step: Streaming video
 We saw previously the template of our site. It is time to implement more functionalities!
+
+Our project is to display videos but first, we have to encode them in different resolutions (audio and video) in order to have a single have that will allow the stream of the video. 
+
+To do so, we implemented an upload button linked to a file called upload.php that manage the operations. 
+
+We have to download two softwares:
+- FFMPEG (that you can find here:)
+- GPAC (also available here:)
 
 ### Third Step: Upload and database
