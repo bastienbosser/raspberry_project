@@ -53,7 +53,7 @@ Our project is to display videos but first, we have to encode them in different 
 To do so, we implemented an upload button linked to a file called upload.php that manage the operations. 
 
 We have to download two softwares:
-- FFMPEG (that you can find here:)
-- GPAC (also available here:)
+- FFMPEG (that you can find here: [Ffmpeg](https://www.ffmpeg.org/download.html))
+- GPAC (also available here: [Gpac](https://gpac.wp.imt.fr/downloads/))
 
 ### Third Step: Upload and database
