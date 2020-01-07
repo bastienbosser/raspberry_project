@@ -265,4 +265,4 @@ Test the installation.
 
 For more information on Docker-compose, click here: [Docker-compose](https://docs.docker.com/compose/install/).
 
-We need to "convert" our app into a docker-compose resource that can be used by our Raspberry Pi cluster.
+We need to "convert" our website into a docker-compose resource that can be used by our Raspberry Pi cluster.
