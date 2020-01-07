@@ -148,3 +148,9 @@ And the process is finished. You could see your video now! If you need further i
 ### Third Step: Upload and database
 
 We wanted to bring an additional feature: upload a video and encode it directly. To do so, we implemented an upload button linked to a file called upload.php that manage the operations. 
+
+Indeed, we found a useful php function:
+
+       exec ( string $command [, array &$output [, int &$return_var ]] ) : string
+       
+This way, we can execute the same command lines to encode the video automtically after uploading a video.
