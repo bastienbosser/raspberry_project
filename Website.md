@@ -153,4 +153,34 @@ Indeed, we found a useful php function:
 
        exec ( string $command [, array &$output [, int &$return_var ]] ) : string
        
-This way, we can execute the same command lines to encode the video automtically after uploading a video.
+This way, we can execute the same command lines to encode the video automatically after uploading a video.
+
+Then, we need to verify few things shown below:
+
+      // Check if file already exists
+      if (file_exists($target_file)) {
+         echo "Sorry, file already exists.";
+         $uploadOk = 2;
+         header('location:template.php?msg=3');
+         exit();
+      }
+
+      // Allow certain file formats
+      if($imageFileType != "avi" && $imageFileType != "mp4" && $imageFileType != "wmv") {
+         echo "Sorry, only AVI, MP4, WMV files are allowed.";
+         $uploadOk = 0;
+         header('location:template.php?msg=2');
+         exit();
+      }
+
+      // Check if $uploadOk is set to 0 by an error
+      if ($uploadOk == 0) {
+         echo "Sorry, your file was not uploaded.";
+         header('location:template.php?msg=2');
+      }  
+      
+If you need further information, click here : [PHP exec](https://www.php.net/manual/fr/function.exec.php) .
+
+The upload feature is done except one element: if you are running on a xampp server, you might have a problem with the php settings so you need to change these ones on php.ini in order to have no problem uploading and encoding your file:
+
+
