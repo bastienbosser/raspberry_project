@@ -78,7 +78,7 @@ Then, we need to test the programs:
     Type "cls" to clear the screen
     Type "mp4box" and press ENTER
     If you see a bunch of text, like the second image, you have set up mp4box successfully!
-    If you see something like "ffmpeg" is not recognized as an internal or external command... then something is not setup                                               correctly. You need to go back to step 1 and reinstall the programs.
+    If you see something like "ffmpeg" is not recognized as an internal or external command... then something is not setup correctly. You need to go back to step 1 and reinstall the programs.
     
 To continue, it is necessary to download an .avi file of your choice. Try to execute the following command in the command prompt:
 
