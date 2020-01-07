@@ -48,12 +48,24 @@ Finally, we added a small footer to the website with the name of the project.
 ### Second Step: Streaming video
 We saw previously the template of our site. It is time to implement more functionalities!
 
-Our project is to display videos but first, we have to encode them in different resolutions (audio and video) in order to have a single have that will allow the stream of the video. 
+Our project is to display videos but first, we have to encode them in different resolutions (audio and video) in order to have a single file (a .mpd one) that will allow the stream of the video. 
 
 To do so, we implemented an upload button linked to a file called upload.php that manage the operations. 
+We are going to develop these operations below:
 
-We have to download two softwares:
+We have to download these two softwares:
 - FFMPEG (that you can find here: [Ffmpeg](https://www.ffmpeg.org/download.html))
 - GPAC (also available here: [Gpac](https://gpac.wp.imt.fr/downloads/))
 
+Extract the downloaded ffmpeg zip file to 
+  "c:\ffmpeg"
+  Navigate to the "bin" folder under c:\ffmpeg and copy the address using Ctrl+C
+Open up the System information window. (You can use the shortcut WindowsKey+Break/Pause)
+Click "Advanced system settings"
+Click "Environment Variables..."
+Select the "Path" variable under System variables
+Click "Edit..."
+Click "New"
+Type Ctrl+V to paste in the address where you extracted ffmpeg to earlier 
+  
 ### Third Step: Upload and database
