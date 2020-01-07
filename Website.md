@@ -145,7 +145,7 @@ Add dash.all.min.js to the end of the body.
 
 And the process is finished. You could see your video now! If you need further information, click here : [DashPlayer](https://github.com/Dash-Industry-Forum/dash.js) .
   
-### Third Step: Upload and database
+### Third Step: Upload
 
 We wanted to bring an additional feature: upload a video and encode it directly. To do so, we implemented an upload button linked to a file called upload.php that manage the operations. 
 
@@ -179,8 +179,13 @@ Then, we need to verify few things shown below:
          header('location:template.php?msg=2');
       }  
       
-If you need further information, click here : [PHP exec](https://www.php.net/manual/fr/function.exec.php) .
+If you need further information, click here : [PHP exec](https://www.php.net/manual/fr/function.exec.php).
 
 The upload feature is done except one element: if you are running on a xampp server, you might have a problem with the php settings so you need to change these ones on php.ini in order to have no problem uploading and encoding your file:
 
+    max_execution_time=600
+    post_max_size=2048M
+
+
+### Fourth Step: Export our project through Docker
 
