@@ -57,9 +57,9 @@ We have to download these two softwares:
 - FFMPEG (that you can find here: [Ffmpeg](https://www.ffmpeg.org/download.html))
 - GPAC (also available here: [Gpac](https://gpac.wp.imt.fr/downloads/))
 
-Extract the downloaded ffmpeg zip file to 
+Once it is done, do the following steps:
    
-    "c:\ffmpeg"
+    Extract the downloaded ffmpeg zip file to "c:\ffmpeg"
     Navigate to the "bin" folder under c:\ffmpeg and copy the address using Ctrl+C
     Open up the System information window. (You can use the shortcut WindowsKey+Break/Pause)
     Click "Advanced system settings"
@@ -68,5 +68,68 @@ Extract the downloaded ffmpeg zip file to
     Click "Edit..."
     Click "New"
     Type Ctrl+V to paste in the address where you extracted ffmpeg to earlier 
+    
+Then, we need to test the programs:
+
+    Open the Run dialog using the shortcut WindowsKey+R
+    Type in "cmd" into the textbox and press ENTER
+    In the command prompt type "ffmpeg" and press ENTER
+    If you see a bunch of text, like the first image, you have set up ffmpeg properly!
+    Type "cls" to clear the screen
+    Type "mp4box" and press ENTER
+    If you see a bunch of text, like the second image, you have set up mp4box successfully!
+
+    If you see something like "ffmpeg" is not recognized as an internal or external command... then something is not setup                   correctly. You need to go back to step 1 and reinstall the programs.
+    
+To continue, it is necessary to download an .avi file of your choice. Try to execute the following command in the command prompt:
+
+    ffmpeg -i input.avi -s 160x90 -c:v libx264 -b:v 250k -g 90 -an input_video_160x90_250k.mp4
+    
+Here are what the arguments mean:
+
+    -i input.avi - tells ffmpeg where the input file is
+    -s 160x90 - is the resolution we want to encode our input file to
+    -c:v libx264 - specifies the audio codec to use, in this case we want h264
+    -b:v 250k - is the bitrate we want to encode the video to
+    -g 90 - tells ffmpeg we want a keyframe interval (GOP length) of 90
+    -an - do not encode audio
+    input_video_160x90_250k.mp4 - the output file
+    
+Now, encode the audio using:
+
+    ffmpeg -i input.avi -c:a aac -b:a 128k -vn input_audio_128k.mp4 
+    
+Here are what the arguments mean:
+
+    -i input.avi - the input file
+    -c:a - the audio codec
+    -b:a - the bitrate of the audio
+    -vn - do not encode video
+    input_audio_128k.mp4 - the output file
+    
+You have successfully created an encoded audio file and encoded video files, now you need to run the following commands in order to create all the necessary files for the rest of the Instructable.
+
+    ffmpeg -i input.avi -s 160x90 -c:v libx264 -b:v 250k -g 90 -an input_video_160x90_250k.mp4
+    ffmpeg -i input.avi -s 320x180 -c:v libx264 -b:v 500k -g 90 -an input_video_320x180_500k.mp4
+    ffmpeg -i input.avi -s 640x360 -c:v libx264 -b:v 750k -g 90 -an input_video_640x360_750k.mp4
+    ffmpeg -i input.avi -s 640x360 -c:v libx264 -b:v 1000k -g 90 -an input_video_640x360_1000k.mp4
+    ffmpeg -i input.avi -s 1280x720 -c:v libx264 -b:v 1500k -g 90 -an input_video_1280x720_1500k.mp4
+    ffmpeg -i input.avi -c:a aac -b:a 128k -vn input_audio_128k.mp4
+    
+Now that you have all you encoded files, you can turn them into DASH compatible files. This process will generate MPEG-4 initialization files that the DASH player reads at load time and a manifest file that tells the player where all the necessary files are and how to read them.
+
+To prepare your files for streaming you need to use the following command:
+
+    mp4box -dash 5000 -rap -profile dashavc264:onDemand -mpd-title BBB -out manifest.mpd -frag 2000 input_audio_128k.mp4 input_video_160x90_250k.mp4 input_video_320x180_500k.mp4 input_video_640x360_750k.mp4 input_video_640x360_1000k.mp4 input_video_1280x720_1500k.mp4
+    
+        -dash 5000 - cuts the input files into 5 second segments
+    -rap - forces the segments to start with random access points. In other words the allows for seeking of the video
+    -profile dashavc264:onDemand - use the onDemand profile (you can look in the dash specifications to find out more information about the different kinds of profiles)
+    -mpd-title - sets the title of the manifest to "BBB"
+    -out - the output file name
+    -frag - sets the fragment length to 2 seconds. This must be less than the value specified with -dash
+    
+The process is now done and if you need further information, click here: [Mpeg-Dash](https://www.instructables.com/id/Making-Your-Own-Simple-DASH-MPEG-Server-Windows-10/?fbclid=IwAR0vAzRS--Jg7V9TS25tiYMLQGHmv0i87S1O0zJdX2Pabj0inWvZAKtqeM4)). Now, we just need a player able to read the .mpd file to see our video.
+
   
 ### Third Step: Upload and database
