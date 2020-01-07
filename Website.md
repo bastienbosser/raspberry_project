@@ -58,14 +58,15 @@ We have to download these two softwares:
 - GPAC (also available here: [Gpac](https://gpac.wp.imt.fr/downloads/))
 
 Extract the downloaded ffmpeg zip file to 
-  "c:\ffmpeg"
-  Navigate to the "bin" folder under c:\ffmpeg and copy the address using Ctrl+C
-Open up the System information window. (You can use the shortcut WindowsKey+Break/Pause)
-Click "Advanced system settings"
-Click "Environment Variables..."
-Select the "Path" variable under System variables
-Click "Edit..."
-Click "New"
-Type Ctrl+V to paste in the address where you extracted ffmpeg to earlier 
+   
+    "c:\ffmpeg"
+    Navigate to the "bin" folder under c:\ffmpeg and copy the address using Ctrl+C
+    Open up the System information window. (You can use the shortcut WindowsKey+Break/Pause)
+    Click "Advanced system settings"
+    Click "Environment Variables..."
+    Select the "Path" variable under System variables
+    Click "Edit..."
+    Click "New"
+    Type Ctrl+V to paste in the address where you extracted ffmpeg to earlier 
   
 ### Third Step: Upload and database
