@@ -50,8 +50,7 @@ We saw previously the template of our site. It is time to implement more functio
 
 Our project is to display videos but first, we have to encode them in different resolutions (audio and video) in order to have a single file (a .mpd one) that will allow the stream of the video. 
 
-To do so, we implemented an upload button linked to a file called upload.php that manage the operations. 
-We are going to develop these operations below:
+We are going to develop the operations below:
 
 We have to download these two softwares:
 - FFMPEG (that you can find here: [Ffmpeg](https://www.ffmpeg.org/download.html))
@@ -130,5 +129,22 @@ To prepare your files for streaming you need to use the following command:
     
 The process is now done and if you need further information, click here: [Mpeg-Dash](https://www.instructables.com/id/Making-Your-Own-Simple-DASH-MPEG-Server-Windows-10/?fbclid=IwAR0vAzRS--Jg7V9TS25tiYMLQGHmv0i87S1O0zJdX2Pabj0inWvZAKtqeM4). Now, we just need a player able to read the .mpd file to see our video.
 
+After few researches, we just found one called Dash JavaScript Player.
+
+Create a video element somewhere in your html and provide the path to your mpd file as src. Also ensure that your video element has the data-dashjs-player attribute on it.
+
+      <video data-dashjs-player autoplay src="https://dash.akamaized.net/envivio/EnvivioDash3/manifest.mpd" controls>
+      </video>
+
+Add dash.all.min.js to the end of the body.
+
+      <body>
+         ...
+      <script src="yourPathToDash/dash.all.min.js"></script>
+      </body>
+
+And the process is finished. You could see your video now! If you need further information, click here : [DashPlayer](https://github.com/Dash-Industry-Forum/dash.js) .
   
 ### Third Step: Upload and database
+
+We wanted to bring an additional feature: upload a video and encode it directly. To do so, we implemented an upload button linked to a file called upload.php that manage the operations. 
