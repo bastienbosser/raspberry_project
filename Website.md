@@ -189,3 +189,60 @@ The upload feature is done except one element: if you are running on a xampp ser
 
 ### Fourth Step: Export our project through Docker
 
+In order to use Docker and Docker-compose, we need to install them. Let's start with Docker!
+
+Begin by updating your existing packages:
+
+    sudo apt update
+
+Then, install some prerequisites allowing 'apt' to use the packages via HTTPS:
+
+    sudo apt install apt-transport-https ca-certificates curl software-properties-common
+
+Add the GPG key of the official Docker referential to your system:
+
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+Add the Docker referential to the APT sources:
+
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+
+Upgrade the package database with the Docker packages previously added:
+
+    sudo apt update
+
+Verify that you are installing from the Docker referential instead of the default Ubuntu referential:
+
+    apt-cache policy docker-ce
+
+You should see the following output, even if the Docker version might be different:
+
+      docker-ce:
+      Installed: (none)
+       Candidate: 18.03.1~ce~3-0~ubuntu
+      Version table:
+           18.03.1~ce~3-0~ubuntu 500
+            500 https://download.docker.com/linux/ubuntu bionic/stable amd64 Packages
+            
+Finally, install Docker:
+
+    sudo apt install docker-ce
+
+Docker should now be installed, verify that it's currently running:
+
+    sudo systemctl status docker
+
+The output should be like this:
+
+      Output
+      ● docker.service - Docker Application Container Engine
+       Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+       Active: active (running) since Thu 2018-07-05 15:08:39 UTC; 2min 55s ago
+           Docs: https://docs.docker.com
+      Main PID: 10096 (dockerd)
+        Tasks: 16
+       CGroup: /system.slice/docker.service
+                 ├─10096 /usr/bin/dockerd -H fd://
+                 └─10113 docker-containerd --config /var/run/docker/containerd/containerd.toml
+
+Docker is now correctly installed et ready to be used. For more information, click here [Docker](https://www.digitalocean.com/community/tutorials/comment-installer-et-utiliser-docker-sur-ubuntu-18-04-fr).
