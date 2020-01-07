@@ -245,4 +245,24 @@ The output should be like this:
                  ├─10096 /usr/bin/dockerd -H fd://
                  └─10113 docker-containerd --config /var/run/docker/containerd/containerd.toml
 
-Docker is now correctly installed et ready to be used. For more information, click here [Docker](https://www.digitalocean.com/community/tutorials/comment-installer-et-utiliser-docker-sur-ubuntu-18-04-fr).
+Docker is now correctly installed et ready to be used. For more information, click here: [Docker](https://www.digitalocean.com/community/tutorials/comment-installer-et-utiliser-docker-sur-ubuntu-18-04-fr).
+
+We need Docker-compose now:
+
+Run this command to download the current stable release of Docker Compose:
+
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+
+Apply executable permissions to the binary:
+
+    sudo chmod +x /usr/local/bin/docker-compose
+
+Test the installation.
+
+    $ docker-compose --version
+    docker-compose version 1.25.0, build 1110ad01
+
+For more information on Docker-compose, click here: [Docker-compose](https://docs.docker.com/compose/install/).
+
+We need to "convert" our app into a docker-compose resource that can be used by our Raspberry Pi cluster.
