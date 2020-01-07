@@ -121,7 +121,7 @@ To prepare your files for streaming you need to use the following command:
 
     mp4box -dash 5000 -rap -profile dashavc264:onDemand -mpd-title BBB -out manifest.mpd -frag 2000 input_audio_128k.mp4 input_video_160x90_250k.mp4 input_video_320x180_500k.mp4 input_video_640x360_750k.mp4 input_video_640x360_1000k.mp4 input_video_1280x720_1500k.mp4
     
-        -dash 5000 - cuts the input files into 5 second segments
+    -dash 5000 - cuts the input files into 5 second segments
     -rap - forces the segments to start with random access points. In other words the allows for seeking of the video
     -profile dashavc264:onDemand - use the onDemand profile (you can look in the dash specifications to find out more information about the different kinds of profiles)
     -mpd-title - sets the title of the manifest to "BBB"
