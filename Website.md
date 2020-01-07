@@ -105,7 +105,7 @@ Here are what the arguments mean:
     -vn - do not encode video
     input_audio_128k.mp4 - the output file
     
-You have successfully created an encoded audio file and encoded video files, now you need to run the following commands in order to create all the necessary files for the rest of the Instructable.
+You have successfully created an encoded audio file and encoded video files, now you need to run the following commands in order to create all the necessary files for the rest of the Instructable. Note that many other resolutions exist but these ones will be enough for our test file.
 
     ffmpeg -i input.avi -s 160x90 -c:v libx264 -b:v 250k -g 90 -an input_video_160x90_250k.mp4
     ffmpeg -i input.avi -s 320x180 -c:v libx264 -b:v 500k -g 90 -an input_video_320x180_500k.mp4
