@@ -78,8 +78,7 @@ Then, we need to test the programs:
     Type "cls" to clear the screen
     Type "mp4box" and press ENTER
     If you see a bunch of text, like the second image, you have set up mp4box successfully!
-
-    If you see something like "ffmpeg" is not recognized as an internal or external command... then something is not setup                   correctly. You need to go back to step 1 and reinstall the programs.
+    If you see something like "ffmpeg" is not recognized as an internal or external command... then something is not setup                                               correctly. You need to go back to step 1 and reinstall the programs.
     
 To continue, it is necessary to download an .avi file of your choice. Try to execute the following command in the command prompt:
 
@@ -129,7 +128,7 @@ To prepare your files for streaming you need to use the following command:
     -out - the output file name
     -frag - sets the fragment length to 2 seconds. This must be less than the value specified with -dash
     
-The process is now done and if you need further information, click here: [Mpeg-Dash](https://www.instructables.com/id/Making-Your-Own-Simple-DASH-MPEG-Server-Windows-10/?fbclid=IwAR0vAzRS--Jg7V9TS25tiYMLQGHmv0i87S1O0zJdX2Pabj0inWvZAKtqeM4)). Now, we just need a player able to read the .mpd file to see our video.
+The process is now done and if you need further information, click here: [Mpeg-Dash](https://www.instructables.com/id/Making-Your-Own-Simple-DASH-MPEG-Server-Windows-10/?fbclid=IwAR0vAzRS--Jg7V9TS25tiYMLQGHmv0i87S1O0zJdX2Pabj0inWvZAKtqeM4). Now, we just need a player able to read the .mpd file to see our video.
 
   
 ### Third Step: Upload and database
