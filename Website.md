@@ -38,7 +38,7 @@ It is really useful to test, without too much convenience, our website and its f
 
 ### First Step: Develop the structure of the site
 
-It is necessary to code, but, since we are not professionals designers, we used a basic bootstrap template to have a simple and aestethic website first page. 
+It is necessary to code, but, since we are not professionals designers, we used a basic bootstrap template to have a simple and aestethic website first page. You can see the whole documentation of the template here : [Template](https://demos.creative-tim.com/material-kit/docs/2.1/getting-started/introduction.html)
 
 We added a navbar with these elements: logo, home, upload, videos and connection but we'll come back later to the upload and connection parts.
 
