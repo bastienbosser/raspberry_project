@@ -266,3 +266,53 @@ Test the installation.
 For more information on Docker-compose, click here: [Docker-compose](https://docs.docker.com/compose/install/).
 
 We need to "convert" our website into a docker-compose resource that can be used by our Raspberry Pi cluster.
+
+To do so, it is necessary to follow these following instructions!
+
+We'll start by creating a folder for this project:
+
+    mkdir lamp-stack && cd lamp-stack
+
+Create another subdirectory, /php which contains the following index.php file:
+
+      <!-- ./php/index.php -->
+
+      <html>
+         <head>
+             <title>Hello World</title>
+        </head>
+
+          <body>
+             <?php
+                 echo "Hello, World!";
+            ?>
+          </body>
+      </html>
+
+Populate docker-compose.yml with the following configuration:
+
+      # ./docker-compose.yml
+
+      version: '3'
+
+      services:
+       web:
+          image: php:7.2.2-apache
+          container_name: php_web
+         volumes:
+           - ./php/:/var/www/html/
+        ports:
+           - "8080:80"
+          stdin_open: true
+          tty: true
+          
+Execute in the terminal:
+
+    docker-compose up -d 
+      
+And load in your browser:
+
+    http://localhost:8080/
+    
+To conclude, add your files in the php folder and replace the content of the index.php file. Everything is now properly working and available to be deployed!
+
