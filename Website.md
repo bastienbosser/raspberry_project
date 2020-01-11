@@ -247,11 +247,46 @@ The output should be like this:
 
 Docker is now correctly installed et ready to be used. For more information, click here: [Docker](https://www.digitalocean.com/community/tutorials/comment-installer-et-utiliser-docker-sur-ubuntu-18-04-fr).
 
+We need a Dockerfile that looks like this including the files of the website in the src folder:
 
-      
+    FROM php:7.4-apache
+    COPY src/ /var/www/html/
+
+Then, build our image:
+
+    sudo docker build -t my-apache2 .
+    
+Run the container to test it:
+
+    sudo docker run -p 80:80 my-apache2
+    
+To access the container run sudo docker images and gather the ID of the container:
+
+    sudo docker exec -it {ID}/bin/bash
+    
+We now want to push our container to the Docker Hub:
+
+    sudo docker login
+    
+Then:
+
+    sudo docker tag image username/repository:tag
+    
+And:
+
+    sudo docker push username/repository:tag
+    
+When it's done, to access the content:
+
+    sudo docker pull neopix/livefox:light
+    
+And to run it:
+
+    sudo docker run -p 80:80 neopix/livefox:light
+
 And load in your browser:
 
-    http://localhost:8080/
+    http://localhost/
     
 To conclude, add your files in the php folder and replace the content of the index.php file. Everything is now properly working and available to be deployed!
 
