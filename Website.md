@@ -247,68 +247,7 @@ The output should be like this:
 
 Docker is now correctly installed et ready to be used. For more information, click here: [Docker](https://www.digitalocean.com/community/tutorials/comment-installer-et-utiliser-docker-sur-ubuntu-18-04-fr).
 
-We need Docker-compose now:
 
-Run this command to download the current stable release of Docker Compose:
-
-    sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
-
-Apply executable permissions to the binary:
-
-    sudo chmod +x /usr/local/bin/docker-compose
-
-Test the installation.
-
-    $ docker-compose --version
-    docker-compose version 1.25.0, build 1110ad01
-
-For more information on Docker-compose, click here: [Docker-compose](https://docs.docker.com/compose/install/).
-
-We need to "convert" our website into a docker-compose resource that can be used by our Raspberry Pi cluster.
-
-To do so, it is necessary to follow these following instructions!
-
-We'll start by creating a folder for this project:
-
-    mkdir lamp-stack && cd lamp-stack
-
-Create another subdirectory, /php which contains the following index.php file:
-
-      <!-- ./php/index.php -->
-
-      <html>
-         <head>
-             <title>Hello World</title>
-        </head>
-
-          <body>
-             <?php
-                 echo "Hello, World!";
-            ?>
-          </body>
-      </html>
-
-Populate docker-compose.yml with the following configuration:
-
-      # ./docker-compose.yml
-
-      version: '3'
-
-      services:
-       web:
-          image: php:7.2.2-apache
-          container_name: php_web
-         volumes:
-           - ./php/:/var/www/html/
-        ports:
-           - "8080:80"
-          stdin_open: true
-          tty: true
-          
-Execute in the terminal:
-
-    docker-compose up -d 
       
 And load in your browser:
 
