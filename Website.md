@@ -283,6 +283,10 @@ When it's done, to access the content:
 And to run it:
 
     sudo docker run -p 80:80 neopix/livefox:light
+    
+To destroy all the images run:
+
+    sudo docker system prune -a
 
 And load in your browser:
 
