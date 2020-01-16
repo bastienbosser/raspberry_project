@@ -280,6 +280,12 @@ Finally, from your HAproxy machine, check that your agents are responding correc
     
 You should get a something like this:
 
+    sudo kubectl apply -f livefox.yml
+    
+    sudo kubectl get -all --all-namespaces
+    
+    sudo kubectl delete -f livefox.yml
+
     
 
     
