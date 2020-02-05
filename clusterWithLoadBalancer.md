@@ -31,7 +31,28 @@ I choose rasp25
     
 config file /etc/haproxy/haproxy.cfg
 
-### Set your first control plane on rasp25
+    frontend k8s-api
+        bind 192.168.250.101:6443
+        bind 127.0.0.1:6443
+        mode tcp
+        option tcplog
+        default_backend k8s-api
+
+    backend k8s-api
+        mode tcp
+        option tcp-check
+        balance roundrobin
+        default-server inter 10s downinter 5s rise 2 fall 2 slowstart 60s maxconn 250 maxqueue 256 weight 100
+
+            server rasp17 10.10.50.117:6443 check
+            server rasp22 10.10.50.122:6443 check
+
+check the config and restart haproxy with this command
+
+    haproxy -c -f /etc/haproxy/haproxy.cfg
+    sudo service haproxy restart
+
+### Set your first control plane on rasp22
 
     kubeadm config images pull
     kubeadm init --control-plane-endpoint "10.10.50.125:6443" --upload-certs
@@ -109,7 +130,7 @@ the command return
 
     You can now join any number of the control-plane node running the following command on each as root:
 
-      kubeadm join 10.10.50.125:6443 --token glwjuo.85fxnf4cypj0nebj --discovery-token-ca-cert-hash sha256:34bd2cd5b8cf2670e0464a556eef080ff4c607ab2299e9286259d2a5e59b8ddf --control-plane --certificate-key ecc71e6340325e6f92b439e86323747191c18ad3708be92a229929c5e9f34d69
+      kubeadm join 10.10.50.125:6443 --token 4gf7gl.e7linm2xzgekx72c --discovery-token-ca-cert-hash sha256:1c3f83adb806b6c3e5f885efc2f0747a72d351219f919a3f823dfe0f76c0119a --control-plane --certificate-key edaaa39e52a3f10f358dfe8fba8be3bd28ff72b6820f721f313054308d74ddfd
 
     Please note that the certificate-key gives access to cluster sensitive data, keep it secret!
     As a safeguard, uploaded-certs will be deleted in two hours; If necessary, you can use
@@ -117,5 +138,9 @@ the command return
 
     Then you can join any number of worker nodes by running the following on each as root:
 
-    kubeadm join 10.10.50.125:6443 --token glwjuo.85fxnf4cypj0nebj --discovery-token-ca-cert-hash sha256:34bd2cd5b8cf2670e0464a556eef080ff4c607ab2299e9286259d2a5e59b8ddf 
+    kubeadm join 10.10.50.125:6443 --token 4gf7gl.e7linm2xzgekx72c --discovery-token-ca-cert-hash sha256:1c3f83adb806b6c3e5f885efc2f0747a72d351219f919a3f823dfe0f76c0119a  
+
+add a network pod
+
+    kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
     
