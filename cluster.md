@@ -32,7 +32,7 @@ On each raspberry pi execute the following commands:
 I use rasp05. Replace the endoint IP by your master IP.
   
     kubeadm config images pull
-    kubeadm init --control-plane-endpoint=10.10.50.105
+    kubeadm init --control-plane-endpoint=10.10.50.105 --upload-certs
       
 The output should look like:
 
