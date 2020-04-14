@@ -2,7 +2,7 @@
 
 ### First: Some requirement
 
-On each raspberry pie execute the following commands:
+On each raspberry pi execute the following commands:
 
     sudo -i
   
@@ -29,7 +29,7 @@ On each raspberry pie execute the following commands:
   
 ### Second: Start your first control plane
   
-I use rasp05.
+I use rasp05. Replace the endoint IP by your master IP.
   
     kubeadm config images pull
     kubeadm init --control-plane-endpoint=10.10.50.105
