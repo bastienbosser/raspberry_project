@@ -205,15 +205,15 @@ Now, you should add a network pod.
 
 Follow this command:
 
-    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/mandatory.yaml
-    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/service-loadbalancer.yaml
+    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/configuration_file/nginx/mandatory.yaml
+    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/configuration_file/nginx/service-loadbalancer.yaml
 
 #### Secondly, install metallb
 
 Follow this command:
 
-    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/namespace.yaml
-    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/metallb.yaml
+    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/configuration_file/namespaces.yaml
+    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/configuration_file/metallb/metallb.yaml
     kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
     
 Now, you should create your own metallb-config.yaml that will look like this:
@@ -237,9 +237,9 @@ Replace the range of IP by your own free ip from the cluster network.
 
 Follow this command:
 
-    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/livefox-svc.yaml
-    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/livefox-deploy.yaml
-    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/livefox-ingress.yaml
+    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/configuration_file/livefox/livefox-svc.yaml
+    kubectl apply -f https://raw.githubusercontent.com/bastienbosser/raspberry_project/master/configuration_file/livefox/livefox-deploy.yaml
+    kubectl apply -f https://github.com/bastienbosser/raspberry_project/blob/master/configuration_file/livefox/livefox-ingress.yaml
     
 Now, execute this command to know your external ip:
 
