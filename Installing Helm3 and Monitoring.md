@@ -61,26 +61,29 @@ We can now launch prometheus and port-forward the server pod:
 
 We can now show data that Prometheus get in Grafana.
 
+
 ##Install Loki
+
 
 First we add the Loki repo and we deploy the loki stack (the version can change see the [Helm Hub page for loki-stack](https://hub.helm.sh/charts/loki/loki-stack)):
 
 	helm repo add loki https://grafana.github.io/loki/charts
 	helm install -n monitoring loki-stack loki/loki-stack --version 0.36.1
 	
+	
 ##Setup Dashboards in Grafana
 
 We first login into grafana on the webpage
 
-![](images/grafana_login_screen)
+![](images/grafana_login_screen.png)
 
 Click on data source:
 
-![](images/datasource)
+![](images/datasource.png)
 
 Then on Prometheus:
 
-![](images/prometheus_url)
+![](images/prometheus_url.png)
 
 In the URL field put:
 
@@ -88,21 +91,21 @@ In the URL field put:
 
 And click on save and test:
 
-![](images/prometheus_datasource_setup)
+![](images/prometheus_datasource_setup.png)
 
 We now add a dashboard:
 
-![](images/plus)
+![](images/plus.png)
 
-![](images/import)
+![](images/import.png)
 
-![](images/dashboard_prometheus_id)
+![](images/dashboard_prometheus_id.png)
 
 We can use this template for example:3662
 
-![](images/prometheus_datasource_setup)
+![](images/prometheus_datasource_setup.png)
 
-![](images/select_data_source)
+![](images/select_data_source.png)
 
 We repeat the process for loki:
 
@@ -110,11 +113,11 @@ In the config of datasource we put the following in the url field:
 
 `http://loki-stack.monitoring.svc.cluster.local:3100`
 
-![](images/loki_url)
+![](images/loki_url.png)
 
 You should now have this in Datasources:
 
-![](images/datasources)
+![](images/datasources.png)
 
 And we setup a dashboard for loki with this template for example:11489
 	
