@@ -48,7 +48,7 @@ You can have the port with the following command
 `kubectl get -n monitoring svc | grep grafananodeport | cut -d'/' -f1 | rev | cut -d':' -f1 | rev`
 
 
-##Install Prometheus
+## Install Prometheus
 
 The same way we installed Grafana we install Prometheus
 
@@ -62,7 +62,7 @@ We can now launch prometheus and port-forward the server pod:
 We can now show data that Prometheus get in Grafana.
 
 
-##Install Loki
+## Install Loki
 
 
 First we add the Loki repo and we deploy the loki stack (the version can change see the [Helm Hub page for loki-stack](https://hub.helm.sh/charts/loki/loki-stack)):
@@ -71,7 +71,7 @@ First we add the Loki repo and we deploy the loki stack (the version can change 
 	helm install -n monitoring loki-stack loki/loki-stack --version 0.36.1
 	
 	
-##Setup Dashboards in Grafana
+## Setup Dashboards in Grafana
 
 We first login into grafana on the webpage
 
